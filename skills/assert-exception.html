@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用Assert让代码更优雅 | Eason的个人博客</title>
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索！">
+    <meta name="generator" content="VuePress 1.4.0">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.72f2f7da.css" as="style"><link rel="preload" href="/assets/js/app.063b258e.js" as="script"><link rel="preload" href="/assets/js/2.66c9edee.js" as="script"><link rel="preload" href="/assets/js/22.45fbabc8.js" as="script"><link rel="prefetch" href="/assets/js/10.e11163a6.js"><link rel="prefetch" href="/assets/js/11.54e887dc.js"><link rel="prefetch" href="/assets/js/12.63104c69.js"><link rel="prefetch" href="/assets/js/13.2b7f2bae.js"><link rel="prefetch" href="/assets/js/14.c48c8a94.js"><link rel="prefetch" href="/assets/js/15.63b566e4.js"><link rel="prefetch" href="/assets/js/16.8061128f.js"><link rel="prefetch" href="/assets/js/17.66f8b787.js"><link rel="prefetch" href="/assets/js/18.2485be10.js"><link rel="prefetch" href="/assets/js/19.849ced7a.js"><link rel="prefetch" href="/assets/js/20.eeb7f00b.js"><link rel="prefetch" href="/assets/js/21.b826517f.js"><link rel="prefetch" href="/assets/js/23.d7c7298f.js"><link rel="prefetch" href="/assets/js/24.5eee74a6.js"><link rel="prefetch" href="/assets/js/25.e167d889.js"><link rel="prefetch" href="/assets/js/3.cda451cb.js"><link rel="prefetch" href="/assets/js/4.45401439.js"><link rel="prefetch" href="/assets/js/5.ca3fb8a7.js"><link rel="prefetch" href="/assets/js/6.f219936b.js"><link rel="prefetch" href="/assets/js/7.4c8296dc.js"><link rel="prefetch" href="/assets/js/8.f63d5007.js"><link rel="prefetch" href="/assets/js/9.4942da5a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.72f2f7da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://www.vuepress.cn/logo.png" alt="Eason的个人博客" class="logo"> <span class="site-name can-hide">Eason的个人博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link router-link-exact-active router-link-active">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link router-link-exact-active router-link-active">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>使用Assert让代码更优雅</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/skills/assert-exception.html#简介" class="sidebar-link">简介</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/skills/assert-exception.html#assert-elegant-check" class="sidebar-link">Assert Elegant Check</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/skills/assert-exception.html#业务调用" class="sidebar-link">业务调用</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/skills/assert-exception.html#总结" class="sidebar-link">总结</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用assert让代码更优雅"><a href="#使用assert让代码更优雅" class="header-anchor">#</a> 使用Assert让代码更优雅</h1> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p>在web服务的controller层和service层，随处可见使用if/else去做一些业务逻辑判断，然后通过抛异常/retrun方式中断业务，如下伪代码：</p> <div class="language-java extra-class"><pre class="language-java"><code>	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;x is empty&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	or
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ValidateException</span><span class="token punctuation">(</span><span class="token string">&quot;x is empty&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	or
+	<span class="token keyword">try</span><span class="token punctuation">{</span>
+        xxx
+	<span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;....&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;biz handle error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre></div><p>对于一些有经验的程序员来说，太多的if else , try catch代码让人看的很难受，总是想方设法的想消灭它们。相信很多人已经在使用Assert，配合Spring的统一异常处理机制来消灭他们了，如下伪代码：</p> <div class="language-java extra-class"><pre class="language-java"><code>	<span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notEmpty</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">'x is empty'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>有没有感觉整个世界都干净多了，下面介绍一种更容易理解、让人更舒服的写法。</p> <h2 id="assert-elegant-check"><a href="#assert-elegant-check" class="header-anchor">#</a> Assert Elegant Check</h2> <p>先看下最终调用效果：</p> <div class="language-java extra-class"><pre class="language-java"><code>	<span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>PARAM_EMPTY_ERROR<span class="token punctuation">.</span><span class="token function">notBlank</span><span class="token punctuation">(</span>pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>USER_EXITS<span class="token punctuation">.</span><span class="token function">isTrue</span><span class="token punctuation">(</span>exist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>我们先定义一个返回前端的统一模型Response</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Getter</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Response</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> SUC_CODE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> SUC_MSG <span class="token operator">=</span> <span class="token string">&quot;成功&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">T</span> data<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Response</span><span class="token punctuation">(</span><span class="token class-name">T</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> SUC_CODE<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> SUC_MSG<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Response</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">,</span> <span class="token class-name">T</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">Response</span> <span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">Response</span> <span class="token function">ok</span><span class="token punctuation">(</span><span class="token class-name">T</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">Response</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">Response</span> <span class="token function">res</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">,</span> <span class="token class-name">T</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>定义一个自定义异常的基类，扩展code属性，一般前端需要一个code和msg</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Getter</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BaseException</span> <span class="token keyword">extends</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">BaseException</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//细化异常类型</span>
+<span class="token annotation punctuation">@Getter</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ValidateException</span> <span class="token keyword">extends</span> <span class="token class-name">BaseException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">ValidateException</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>Spring全局异常处理</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@ControllerAdvice</span>
+<span class="token annotation punctuation">@ConditionalOnWebApplication</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalExceptionHandler</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">BaseException</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">busErrorException</span><span class="token punctuation">(</span><span class="token class-name">BaseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">BindException</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">handleBindException</span><span class="token punctuation">(</span><span class="token class-name">BindException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">wrapperBindingResult</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getBindingResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">MethodArgumentNotValidException</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">handleValidException</span><span class="token punctuation">(</span><span class="token class-name">MethodArgumentNotValidException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">wrapperBindingResult</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getBindingResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ResponseBody</span>
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">exceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;GlobalException Catch Exception ：{}&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>SYSTEM_ERROR<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>SYSTEM_ERROR<span class="token punctuation">.</span><span class="token function">getMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Response</span> <span class="token function">wrapperBindingResult</span><span class="token punctuation">(</span><span class="token class-name">BindingResult</span> bindingResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">StringBuilder</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ObjectError</span> error <span class="token operator">:</span> bindingResult<span class="token punctuation">.</span><span class="token function">getAllErrors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            msg<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>error <span class="token keyword">instanceof</span> <span class="token class-name">FieldError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                msg<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">FieldError</span><span class="token punctuation">)</span> error<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">&quot;: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            msg<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span><span class="token function">getDefaultMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token string">&quot;&quot;</span> <span class="token operator">:</span> error<span class="token punctuation">.</span><span class="token function">getDefaultMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>VALID_ERROR<span class="token punctuation">.</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> msg<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上面全局异常处理类中，使用了统一定义的全局错误码枚举ResponseEnum，对于一些通用的错误码定义，我们可以通过一个枚举单独列出来，各个业务模块共用。</p> <ul><li>定义统一错误码枚举类</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Getter</span>
+<span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">ResponseEnum</span> <span class="token keyword">implements</span> <span class="token class-name">Assert</span> <span class="token punctuation">{</span>
+    <span class="token function">SYSTEM_ERROR</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">,</span> <span class="token string">&quot;Server Error!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">VALID_ERROR</span><span class="token punctuation">(</span><span class="token number">10001</span><span class="token punctuation">,</span> <span class="token string">&quot;Parameters Validate Error!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token function">PARAM_EMPTY_ERROR</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">,</span> <span class="token string">&quot;Missing necessary parameters!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token function">USER_EXITS</span><span class="token punctuation">(</span><span class="token number">20001</span><span class="token punctuation">,</span> <span class="token string">&quot;User already exists!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">PASS_STRENGTH_LOW</span><span class="token punctuation">(</span><span class="token number">20002</span><span class="token punctuation">,</span> <span class="token string">&quot;Password strength is low!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span>
+
+    <span class="token class-name">ResponseEnum</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">BaseException</span> <span class="token function">ofException</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> msg <span class="token operator">=</span> <span class="token class-name">MessageFormat</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BaseException</span><span class="token punctuation">(</span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>为了实现我们最上面定义的效果，我们需要让枚举类具备Assert的断言能力，枚举无法继承，但是可以实现接口，所以我们需要将Assert定义成一个接口，然后由枚举类来实现。</p> <ul><li>Assert接口类</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Assert</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">BaseException</span> <span class="token function">ofException</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">notNull</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>object <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token function">ofException</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">notBlank</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StrUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token function">ofException</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">isAnyBlank</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> css<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">StrUtils</span><span class="token punctuation">.</span><span class="token function">isAnyBlank</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">throw</span>  <span class="token function">ofException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">isTrue</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> expression<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>expression<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token function">ofException</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">isFalse</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> expression<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>expression<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token function">ofException</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Assert只负责断言，断言后要返回哪个error info，其实是ResponseEnum定义的，所以提供一个未实现的ofException方法，由ResponseEnum来实现。</p> <p>以上我们已实现了通过对断言和统一异常处理的组合封装，让代码更优雅。</p> <h2 id="业务调用"><a href="#业务调用" class="header-anchor">#</a> 业务调用</h2> <p>我们通过一个用户注册的demo，演示业务侧调用</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserRegistController</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserRegistService</span> registService<span class="token punctuation">;</span>
+	
+	<span class="token comment">//为方便演示，pwd改成非必传</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/user/regist&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">regist</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span> <span class="token class-name">String</span> usname<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token class-name">String</span> pwd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> registService<span class="token punctuation">.</span><span class="token function">regist</span><span class="token punctuation">(</span>usname<span class="token punctuation">,</span> pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserRegistService</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Response</span> <span class="token function">regist</span><span class="token punctuation">(</span><span class="token class-name">String</span> usname<span class="token punctuation">,</span> <span class="token class-name">String</span> pwd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>PARAM_EMPTY_ERROR<span class="token punctuation">.</span><span class="token function">isAnyBlank</span><span class="token punctuation">(</span>usname<span class="token punctuation">,</span> pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">boolean</span> exist <span class="token operator">=</span> <span class="token string">&quot;abc&quot;</span><span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>usname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>USER_EXITS<span class="token punctuation">.</span><span class="token function">isTrue</span><span class="token punctuation">(</span><span class="token operator">!</span>exist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">boolean</span> weakPass <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">&quot;.*[A-Za-z0-9]+.*&quot;</span><span class="token punctuation">,</span> pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ResponseEnum</span><span class="token punctuation">.</span>PASS_STRENGTH_LOW<span class="token punctuation">.</span><span class="token function">isTrue</span><span class="token punctuation">(</span><span class="token operator">!</span>weakPass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token class-name">Response</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>其实就是异常信息和断言的组合，如果按常用的写法，异常信息和断言其实是耦合的或者属于硬编码的，这种写法让这个组合更灵活，异常信息和断言本身没有耦合，异常信息只是负责统一错误码的定义，断言只负责断言。</p> <p>Demo源码：https://github.com/pengls/dragon-demo/tree/master/assert-except</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.063b258e.js" defer></script><script src="/assets/js/2.66c9edee.js" defer></script><script src="/assets/js/22.45fbabc8.js" defer></script>
+  </body>
+</html>

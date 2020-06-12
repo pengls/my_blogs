@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用JMH做代码性能测试 | Eason的个人博客</title>
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索！">
+    <meta name="generator" content="VuePress 1.4.0">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.72f2f7da.css" as="style"><link rel="preload" href="/assets/js/app.063b258e.js" as="script"><link rel="preload" href="/assets/js/2.66c9edee.js" as="script"><link rel="preload" href="/assets/js/23.d7c7298f.js" as="script"><link rel="prefetch" href="/assets/js/10.e11163a6.js"><link rel="prefetch" href="/assets/js/11.54e887dc.js"><link rel="prefetch" href="/assets/js/12.63104c69.js"><link rel="prefetch" href="/assets/js/13.2b7f2bae.js"><link rel="prefetch" href="/assets/js/14.c48c8a94.js"><link rel="prefetch" href="/assets/js/15.63b566e4.js"><link rel="prefetch" href="/assets/js/16.8061128f.js"><link rel="prefetch" href="/assets/js/17.66f8b787.js"><link rel="prefetch" href="/assets/js/18.2485be10.js"><link rel="prefetch" href="/assets/js/19.849ced7a.js"><link rel="prefetch" href="/assets/js/20.eeb7f00b.js"><link rel="prefetch" href="/assets/js/21.b826517f.js"><link rel="prefetch" href="/assets/js/22.45fbabc8.js"><link rel="prefetch" href="/assets/js/24.5eee74a6.js"><link rel="prefetch" href="/assets/js/25.e167d889.js"><link rel="prefetch" href="/assets/js/3.cda451cb.js"><link rel="prefetch" href="/assets/js/4.45401439.js"><link rel="prefetch" href="/assets/js/5.ca3fb8a7.js"><link rel="prefetch" href="/assets/js/6.f219936b.js"><link rel="prefetch" href="/assets/js/7.4c8296dc.js"><link rel="prefetch" href="/assets/js/8.f63d5007.js"><link rel="prefetch" href="/assets/js/9.4942da5a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.72f2f7da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://www.vuepress.cn/logo.png" alt="Eason的个人博客" class="logo"> <span class="site-name can-hide">Eason的个人博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link router-link-exact-active router-link-active">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link router-link-exact-active router-link-active">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>使用JMH做代码性能测试</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/skills/jmh.html#简介" class="sidebar-link">简介</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/skills/jmh.html#使用" class="sidebar-link">使用</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用jmh做代码性能测试"><a href="#使用jmh做代码性能测试" class="header-anchor">#</a> 使用JMH做代码性能测试</h1> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p>在开发过程中，我们经常需要对代码性能进行测试，特别是涉及到算法的地方，可能会有多种算法实现方式，这时我们需要对每种实现的性能进行测试。告别手动的简单计时统计，推荐使用OpenJDK的微基准测试套件JMH。</p> <h2 id="使用"><a href="#使用" class="header-anchor">#</a> 使用</h2> <ul><li>JDK9以前需要引入JMH的依赖，JDK9以后就自带了</li></ul> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.openjdk.jmh<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jmh-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.23<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.openjdk.jmh<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jmh-generator-annprocess<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.23<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ul><li>编写测试用例</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JMHTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Benchmark</span>
+    <span class="token annotation punctuation">@BenchmarkMode</span><span class="token punctuation">(</span><span class="token class-name">Mode</span><span class="token punctuation">.</span><span class="token class-name">AverageTime</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@OutputTimeUnit</span><span class="token punctuation">(</span><span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Warmup</span><span class="token punctuation">(</span>iterations <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> time <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> timeUnit <span class="token operator">=</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Measurement</span><span class="token punctuation">(</span>iterations <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> time <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> timeUnit <span class="token operator">=</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Fork</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">t</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token string">&quot;,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">t2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">RunnerException</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 启动基准测试</span>
+        <span class="token class-name">Options</span> opt <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OptionsBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 要导入的测试类</span>
+                <span class="token punctuation">.</span><span class="token function">include</span><span class="token punctuation">(</span><span class="token class-name">JMHTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getSimpleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token comment">// 输出测试结果的文件</span>
+                <span class="token comment">//.output(&quot;D:\\jmh.log&quot;)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Runner</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 执行测试</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><ul><li><p>参数说明
+<strong>OptionsBuilder</strong>用于构造基准测试相关的参数，上面的示例将参数使用注解的方式提供了，也可以在OptionsBuilder中通过编码的方式提供。<br> <strong>@Benchmark</strong>：指定一个测试基准测试方法，启动后会扫描有这个注解的方法进行基准测试；<br> <strong>@BenchmarkMode</strong>：基准测试模式，有Throughput（吞吐量）、AverageTime（平均时间）、SampleTime（随机采样）、SingleShotTime（在每次执行中统计时间）、All，上面示例采用AverageTime，即统计平均耗时；<br> <strong>@OutputTimeUnit</strong>：输出时间单位为秒；<br> <strong>@Warmup</strong>：预热，上面示例预热2轮，每轮执行1秒时间；<br> <strong>@Measurement</strong>：真实执行
+<strong>@Fork</strong>：相当于执行几轮</p></li> <li><p>示例输出</p></li></ul> <div class="language-txt extra-class"><pre class="language-text"><code>Result &quot;com.eason.JMHTest.t&quot;:
+  0.005 ±(99.9%) 0.001 s/op [Average]
+  (min, avg, max) = (0.005, 0.005, 0.005), stdev = 0.001
+  CI (99.9%): [0.005, 0.006] (assumes normal distribution)
+
+Benchmark  Mode  Cnt  Score    Error  Units
+JMHTest.t  avgt    5  0.005 ±  0.001   s/op  
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.063b258e.js" defer></script><script src="/assets/js/2.66c9edee.js" defer></script><script src="/assets/js/23.d7c7298f.js" defer></script>
+  </body>
+</html>

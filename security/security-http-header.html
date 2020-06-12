@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>添加安全http header | Eason的个人博客</title>
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索！">
+    <meta name="generator" content="VuePress 1.4.0">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.72f2f7da.css" as="style"><link rel="preload" href="/assets/js/app.063b258e.js" as="script"><link rel="preload" href="/assets/js/2.66c9edee.js" as="script"><link rel="preload" href="/assets/js/21.b826517f.js" as="script"><link rel="prefetch" href="/assets/js/10.e11163a6.js"><link rel="prefetch" href="/assets/js/11.54e887dc.js"><link rel="prefetch" href="/assets/js/12.63104c69.js"><link rel="prefetch" href="/assets/js/13.2b7f2bae.js"><link rel="prefetch" href="/assets/js/14.c48c8a94.js"><link rel="prefetch" href="/assets/js/15.63b566e4.js"><link rel="prefetch" href="/assets/js/16.8061128f.js"><link rel="prefetch" href="/assets/js/17.66f8b787.js"><link rel="prefetch" href="/assets/js/18.2485be10.js"><link rel="prefetch" href="/assets/js/19.849ced7a.js"><link rel="prefetch" href="/assets/js/20.eeb7f00b.js"><link rel="prefetch" href="/assets/js/22.45fbabc8.js"><link rel="prefetch" href="/assets/js/23.d7c7298f.js"><link rel="prefetch" href="/assets/js/24.5eee74a6.js"><link rel="prefetch" href="/assets/js/25.e167d889.js"><link rel="prefetch" href="/assets/js/3.cda451cb.js"><link rel="prefetch" href="/assets/js/4.45401439.js"><link rel="prefetch" href="/assets/js/5.ca3fb8a7.js"><link rel="prefetch" href="/assets/js/6.f219936b.js"><link rel="prefetch" href="/assets/js/7.4c8296dc.js"><link rel="prefetch" href="/assets/js/8.f63d5007.js"><link rel="prefetch" href="/assets/js/9.4942da5a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.72f2f7da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://www.vuepress.cn/logo.png" alt="Eason的个人博客" class="logo"> <span class="site-name can-hide">Eason的个人博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link router-link-exact-active router-link-active">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link router-link-exact-active router-link-active">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>添加安全http header</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/security/security-http-header.html#简介" class="sidebar-link">简介</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#content-security-policy" class="sidebar-link">Content-Security-Policy</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#x-frame-options" class="sidebar-link">X-Frame-Options</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#x-content-type-options" class="sidebar-link">X-Content-Type-Options</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#x-xss-protection" class="sidebar-link">X-XSS-Protection</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#strict-transport-security" class="sidebar-link">Strict-Transport-Security</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/security/security-http-header.html#实现参考" class="sidebar-link">实现参考</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="添加安全http-header"><a href="#添加安全http-header" class="header-anchor">#</a> 添加安全http header</h1> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p>为web站点添加安全相关的response header是一项很有必要的工作。如以下header：</p> <ul><li>Content-Security-Policy</li> <li>X-Frame-Options</li> <li>X-Content-Type-Options</li> <li>X-XSS-Protection</li> <li>Strict-Transport-Security</li></ul> <h2 id="content-security-policy"><a href="#content-security-policy" class="header-anchor">#</a> Content-Security-Policy</h2> <p>简称CSP，内容安全策略，指定服务器可以加载的资源白名单，涉及各种类型的资源，具体可参考：</p> <h2 id="x-frame-options"><a href="#x-frame-options" class="header-anchor">#</a> X-Frame-Options</h2> <p>防点击劫持，可阻止站点被恶意iframe嵌套</p> <h2 id="x-content-type-options"><a href="#x-content-type-options" class="header-anchor">#</a> X-Content-Type-Options</h2> <h2 id="x-xss-protection"><a href="#x-xss-protection" class="header-anchor">#</a> X-XSS-Protection</h2> <h2 id="strict-transport-security"><a href="#strict-transport-security" class="header-anchor">#</a> Strict-Transport-Security</h2> <h2 id="实现参考"><a href="#实现参考" class="header-anchor">#</a> 实现参考</h2> <p><a href="dragon-web-security">https://github.com/pengls/dragon-web-security</a></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.063b258e.js" defer></script><script src="/assets/js/2.66c9edee.js" defer></script><script src="/assets/js/21.b826517f.js" defer></script>
+  </body>
+</html>

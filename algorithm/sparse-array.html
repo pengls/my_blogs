@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>稀疏数组 | Eason的个人博客</title>
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索！">
+    <meta name="generator" content="VuePress 1.4.0">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.72f2f7da.css" as="style"><link rel="preload" href="/assets/js/app.063b258e.js" as="script"><link rel="preload" href="/assets/js/2.66c9edee.js" as="script"><link rel="preload" href="/assets/js/7.4c8296dc.js" as="script"><link rel="prefetch" href="/assets/js/10.e11163a6.js"><link rel="prefetch" href="/assets/js/11.54e887dc.js"><link rel="prefetch" href="/assets/js/12.63104c69.js"><link rel="prefetch" href="/assets/js/13.2b7f2bae.js"><link rel="prefetch" href="/assets/js/14.c48c8a94.js"><link rel="prefetch" href="/assets/js/15.63b566e4.js"><link rel="prefetch" href="/assets/js/16.8061128f.js"><link rel="prefetch" href="/assets/js/17.66f8b787.js"><link rel="prefetch" href="/assets/js/18.2485be10.js"><link rel="prefetch" href="/assets/js/19.849ced7a.js"><link rel="prefetch" href="/assets/js/20.eeb7f00b.js"><link rel="prefetch" href="/assets/js/21.b826517f.js"><link rel="prefetch" href="/assets/js/22.45fbabc8.js"><link rel="prefetch" href="/assets/js/23.d7c7298f.js"><link rel="prefetch" href="/assets/js/24.5eee74a6.js"><link rel="prefetch" href="/assets/js/25.e167d889.js"><link rel="prefetch" href="/assets/js/3.cda451cb.js"><link rel="prefetch" href="/assets/js/4.45401439.js"><link rel="prefetch" href="/assets/js/5.ca3fb8a7.js"><link rel="prefetch" href="/assets/js/6.f219936b.js"><link rel="prefetch" href="/assets/js/8.f63d5007.js"><link rel="prefetch" href="/assets/js/9.4942da5a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.72f2f7da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://www.vuepress.cn/logo.png" alt="Eason的个人博客" class="logo"> <span class="site-name can-hide">Eason的个人博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link router-link-exact-active router-link-active">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程技巧" class="dropdown-title"><span class="title">编程技巧</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skills/static-instance.html" class="nav-link">
+  使用静态方法代替构造器创建实例
+</a></li><li class="dropdown-item"><!----> <a href="/skills/assert-exception.html" class="nav-link">
+  Assert让代码更优雅
+</a></li><li class="dropdown-item"><!----> <a href="/skills/jmh.html" class="nav-link">
+  使用JMH测试代码性能
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="设计模式" class="dropdown-title"><span class="title">设计模式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          创建型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/singleton.html" class="nav-link">
+  单例
+</a></li><li class="dropdown-subitem"><a href="/design/simple_factory.html" class="nav-link">
+  简单工厂
+</a></li><li class="dropdown-subitem"><a href="/design/method_factory.html" class="nav-link">
+  工厂方法
+</a></li><li class="dropdown-subitem"><a href="/design/builder.html" class="nav-link">
+  建造者
+</a></li><li class="dropdown-subitem"><a href="/design/prototype.html" class="nav-link">
+  原型
+</a></li></ul></li><li class="dropdown-item"><h4>
+          结构型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/proxy.html" class="nav-link">
+  代理
+</a></li><li class="dropdown-subitem"><a href="/design/decorator.html" class="nav-link">
+  装饰者
+</a></li><li class="dropdown-subitem"><a href="/design/adaptor.html" class="nav-link">
+  适配器
+</a></li><li class="dropdown-subitem"><a href="/design/facade.html" class="nav-link">
+  门面(外观)
+</a></li></ul></li><li class="dropdown-item"><h4>
+          行为型
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/design/strategy.html" class="nav-link">
+  策略
+</a></li><li class="dropdown-subitem"><a href="/design/observer.html" class="nav-link">
+  观察者
+</a></li><li class="dropdown-subitem"><a href="/design/chain.html" class="nav-link">
+  责任链
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构和算法" class="dropdown-title"><span class="title">数据结构和算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          数组
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/sparse-array.html" class="nav-link router-link-exact-active router-link-active">
+  稀疏数组
+</a></li></ul></li><li class="dropdown-item"><h4>
+          队列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/algorithm/queue.html" class="nav-link">
+  队列
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web安全" class="dropdown-title"><span class="title">web安全</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/security/security-http-header.html" class="nav-link">
+  为站点添加security header
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>稀疏数组</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/algorithm/sparse-array.html#简介" class="sidebar-link">简介</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/algorithm/sparse-array.html#java实现" class="sidebar-link">Java实现</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/algorithm/sparse-array.html#测试" class="sidebar-link">测试</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/algorithm/sparse-array.html#控制台打印" class="sidebar-link">控制台打印</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="稀疏数组"><a href="#稀疏数组" class="header-anchor">#</a> 稀疏数组</h1> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p>稀疏数组是面对一个二维数组中有众多重复元素的情况下，为了节省磁盘空间，将此二维数组转化为更加节省空间的一种数组。如：<br>
+原始数组（11 * 11）：</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 1 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 2 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>0 0 0 0 0 0 0 0 0 0 0</p> <p>压缩后的稀疏数组：</p> <p>row  col  val</p> <p>11   11   2</p> <p>1    2    1</p> <p>2    4    2</p> <p>第一行表示原数组有11行，11列表，非0数据有2个，接下来的行数表示第几行，第几列，非0数据值。<br>
+可以看到采用稀疏数组可以节省大量空间。</p> <h2 id="java实现"><a href="#java实现" class="header-anchor">#</a> Java实现</h2> <div class="language-java extra-class"><pre class="language-java"><code>
+<span class="token comment">/**
+ * @ClassName: SparseArray
+ * @Description: 稀疏数组
+ * @Author: pengl
+ * @Date: 2020/5/7 12:54
+ * @Version V1.0
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">SparseArray</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @MethodName: from
+     * @Description: 将一个普通数组转换为稀疏数组
+     * @Author: pengl
+     * @Date: 2020/5/7 12:55
+     * @Version V1.0
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">from</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token string">&quot;arr is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> locations <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> val <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    locations<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">&quot;,&quot;</span> <span class="token operator">+</span> j <span class="token operator">+</span> <span class="token string">&quot;,&quot;</span> <span class="token operator">+</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    sum<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>sum <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">,</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">,</span> sum<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>locations<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> locations<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ss <span class="token operator">=</span> locations<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">&quot;,&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                result<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>ss<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>ss<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>ss<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * @MethodName: to
+     * @Description: 将一个稀疏数组还原成普通数组
+     * @Author: pengl
+     * @Date: 2020/5/7 12:56
+     * @Version V1.0
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">to</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token string">&quot;arr is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> row <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            result<span class="token punctuation">[</span>row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>row<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="测试"><a href="#测试" class="header-anchor">#</a> 测试</h2> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SparseArrayTest</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">t1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chessArr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        chessArr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        chessArr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token comment">//输出原始的二维数组</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;原始的二维数组：&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span>chessArr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//转换为稀疏数组</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sparseArr <span class="token operator">=</span> <span class="token class-name">SparseArray</span><span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>chessArr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;压缩后的稀疏数组：&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span>sparseArr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;解压稀疏数组：&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token class-name">SparseArray</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>sparseArr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token string">&quot;\t&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="控制台打印"><a href="#控制台打印" class="header-anchor">#</a> 控制台打印</h2> <div class="language-java extra-class"><pre class="language-java"><code>原始的二维数组：
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">1</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">2</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+压缩后的稀疏数组：
+<span class="token number">11</span>	<span class="token number">11</span>	<span class="token number">2</span>	
+<span class="token number">1</span>	<span class="token number">2</span>	<span class="token number">1</span>	
+<span class="token number">2</span>	<span class="token number">3</span>	<span class="token number">2</span>	
+解压稀疏数组：
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">1</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">2</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	
+<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">0</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.063b258e.js" defer></script><script src="/assets/js/2.66c9edee.js" defer></script><script src="/assets/js/7.4c8296dc.js" defer></script>
+  </body>
+</html>
